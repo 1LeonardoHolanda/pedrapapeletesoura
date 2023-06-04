@@ -1,0 +1,81 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class pedrapapeletesoura {
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		Random random = new Random();
+		String nome;
+		int number, cpu, placarPlayer, placarCpu;
+
+//		Para o player os números são:
+//		PEDRA   == 1
+//		PAPEL   == 2
+//		TESOURA == 3		
+//		Para o CPU os números são:
+//		PEDRA   == 0
+//		PAPEL   == 1
+//		TESOURA == 2
+
+		System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+		System.out.println("=-=-=-=-=-=-=-=--SEJA BEM VINDO AO JOGO DE PEDRA PAPEL E TESOURA--=-=-=-=-=-=-=-=-=");
+		System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+		System.out.printf("%n%nComo você se chama? %n");
+		nome = sc.next();
+
+		System.out.printf("Atenção: O VENCEDOR SERÁ QUEM CHEGAR A 3 VITÓRIAS%n%n");
+
+		System.out.println("Vamos começar " + nome + " !!!");
+
+		placarPlayer = 0;
+		placarCpu = 0;
+
+		while (placarPlayer < 3 && placarCpu < 3) {
+			System.out.println("Digite um número: ");
+			number = sc.nextInt();
+			cpu = random.nextInt(2);
+//			LINHA DE CÓDIGO ABAIXO, SERVE SOMENTE PARA VERIFICAR OS NÚMEROS SORTEADOS
+//			System.out.printf("Números sorteados: Você %d e CPU %d%n", number, cpu);
+
+			if (number == 1 && cpu == 0) {
+				System.out.printf("Você escolheu Pedra! CPU escolheu Pedra! Temos um EMPATE.%n%n");
+			} else if (number == 1 && cpu == 1) {
+				System.out.printf("Você escolheu Pedra! CPU escolheu PAPEL! CPU VENCE A PARTIDA!%n%n");
+				placarCpu++;
+			} else if (number == 1 && cpu == 2) {
+				System.out.printf("Você escolheu PEDRA! CPU escolheu Tesoura! VOCÊ GANHOU A PARTIDA!%n%n");
+				placarPlayer++;
+			} else if (number == 2 && cpu == 0) {
+				System.out.printf("Você escolheu PAPEL! CPU escolheu Pedra! VOCÊ GANHOU A PARTIDA!%n%n");
+				placarPlayer++;
+			} else if (number == 2 && cpu == 1) {
+				System.out.printf("Você escolheu Papel! CPU escolheu Papel! Temos um EMPATE.%n%n");
+			} else if (number == 2 && cpu == 2) {
+				System.out.printf("Você escolheu Papel! CPU escolheu TESOURA! CPU VENCE A PARTIDA!%n%n");
+				placarCpu++;
+			} else if (number == 3 && cpu == 0) {
+				System.out.printf("Você escolheu Papel! CPU escolheu TESOURA! CPU VENCE A PARTIDA!%n%n");
+				placarCpu++;
+			} else if (number == 3 && cpu == 1) {
+				System.out.printf("Você escolheu TESOURA! CPU escolheu Papel! VOCÊ GANHOU A PARTIDA!%n%n");
+				placarPlayer++;
+			} else if (number == 3 && cpu == 2) {
+				System.out.printf("Você escolheu Tesoura! CPU escolheu Tesoura! Temos um EMPATE.%n%n");
+			} else {
+				System.out.printf("ATENÇÃO! VOCÊ DEVE INFORMAR UM NÚMERO DE 1 à 3.%n%nTENTE NOVAMENTE,%n");
+			}
+		}
+
+		if (placarPlayer == 3) {
+			System.out.println("PARABÉNS VOCÊ GANHOU!!!");
+			System.out.printf("VOCÊ FEZ %d PONTOS%n%nCPU FEZ %d PONTOS.", placarPlayer, placarCpu);
+		} else if (placarCpu == 3) {
+			System.out.println("Que pena! Você PERDEU! Você não conseguiu superar a CPU!");
+			System.out.printf("VOCÊ FEZ %d PONTOS%n%nCPU VENCE COM %d PONTOS.", placarPlayer, placarCpu);
+		}
+		sc.close();
+
+	}
+
+}
